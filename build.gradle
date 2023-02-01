@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+    implementation 'io.netty:netty-codec-http'
+    implementation 'io.quarkus.arc:arc'
+    implementation 'io.quarkus:quarkus-core'
+    implementation 'io.quarkus:quarkus-oidc'
+    implementation 'io.quarkus:quarkus-oidc-common'
+    implementation 'io.quarkus.security:quarkus-security'
+    implementation 'jakarta.annotation:jakarta.annotation-api'
+    implementation 'jakarta.inject:jakarta.inject-api'
+    implementation 'org.jboss.spec.javax.ws.rs:jboss-jaxrs-api_2.1_spec'
+    runtimeOnly 'io.quarkus:quarkus-smallrye-openapi' because 'it is used to generate /q/openapi and /q/swagger-ui'
+    runtimeOnly 'io.netty:netty-resolver-dns-native-macos:4.1.84.Final:osx-aarch_64'
+}
+
+group 'ai.tusimple.tsaaa'
+version '1.0.1'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}
