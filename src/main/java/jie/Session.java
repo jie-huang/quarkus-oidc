@@ -1,6 +1,5 @@
 package jie;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -18,15 +17,7 @@ public class Session {
   @Path("/login")
   @RolesAllowed("**")
   public Response login() throws URISyntaxException {
-    return Response.seeOther(new URI("/test/data")).build();
-  }
-
-  @GET
-  @Path("/data")
-  @RolesAllowed("**")
-  public Response data() {
     return Response.ok("<!doctype html><html><head><title>test</title></head><body>login successfully</body></html>")
       .header("Content-Type", "text/html;charset=UTF-8").build();
   }
 }
-
